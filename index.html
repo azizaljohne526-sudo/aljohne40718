@@ -33,6 +33,11 @@ input,select,textarea{width:100%;padding:10px;margin:4px 0 10px;border:1px solid
 </head>
 <body><header><h1>🐑 حلال أبو خالد</h1><div>إدارة قطيع الضأن</div></header><main id="page"></main>
 <script>
+ if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js');
+  });
+}
 const K="aziz_halal_v1";let db=JSON.parse(localStorage.getItem(K)||"null")||{};
 ["herd","births","deaths","vaccines","sales","purchases","expenses","notes","inventoryHistory","buyers","activityLog"].forEach(k=>db[k]=Array.isArray(db[k])?db[k]:[]);
 db.settings=db.settings||{rams:0};db.settings.hiddenBirthReport=Array.isArray(db.settings.hiddenBirthReport)?db.settings.hiddenBirthReport:[];db.settings.inventoryBase=db.settings.inventoryBase||null;
