@@ -32,6 +32,55 @@ input,select,textarea{width:100%;padding:10px;margin:4px 0 10px;border:1px solid
 <meta name="theme-color" content="#10583f">
 </head>
 <body><header><h1>🐑 حلال أبو خالد</h1><div>إدارة قطيع الضأن</div></header><main id="page"></main>
+ <div id="licenseBox" style="padding:20px;text-align:center;background:#10231f;color:white;border-radius:15px;margin:20px">
+
+<h2>🔐 تفعيل برنامج تربية الحلال</h2>
+
+<p>رقم الجهاز:</p>
+<p id="deviceId"></p>
+
+<input id="licenseCode" placeholder="اكتب كود التفعيل" style="padding:12px;width:90%">
+
+<br><br>
+
+<button onclick="activateLicense()" style="padding:12px;background:#176b50;color:white;border:0;border-radius:10px">
+تفعيل
+</button>
+
+<p id="licenseMsg"></p>
+
+</div>
+
+
+<script>
+
+let deviceId = "AK-" + btoa(navigator.userAgent).slice(0,12);
+
+document.getElementById("deviceId").innerText = deviceId;
+
+function activateLicense(){
+
+let code = document.getElementById("licenseCode").value;
+
+
+if(code===""){
+
+document.getElementById("licenseMsg").innerText="اكتب كود التفعيل";
+
+return;
+
+}
+
+
+localStorage.setItem("halal_license",code);
+
+
+document.getElementById("licenseBox").style.display="none";
+
+}
+
+
+</script>
 <script>
  if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
